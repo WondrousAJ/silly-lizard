@@ -1,0 +1,88 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - '*.*.*.*'
+
+jobs:
+  Build:
+    permissions:
+      contents: write
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Get Environment Variables
+        run: |
+          $tag = "${{ github.ref }}" -replace 'refs/tags/', ''
+          "tag=$tag" | Out-File -Append -FilePath $Env:GITHUB_ENV
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Download Dalamud Latest
+        run: |
+          Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile latest.zip
+          Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
+
+      - name: Restore Nuget Packages
+        run: dotnet restore SillyLizard/SillyLizard.csproj
+
+      - name: Build Plugin
+        run: dotnet build --no-restore -c Release SillyLizard/SillyLizard.csproj -p:AssemblyVersion=${{ env.tag }} -p:FileVersion=${{ env.tag }} -p:PackageVersion=${{ env.tag }} -p:InformationalVersion=${{ env.tag }} --output .\build
+
+      - name: Zip Plugin
+        run: Compress-Archive -Path .\build\* -DestinationPath .\build\SillyLizard.zip
+
+      - name: Publish Plugin to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ./build/SillyLizard.zip
+          token: ${{ secrets.REPO_DEPLOY_TOKEN }}
+
+      - name: Create manifest.toml
+        run: |
+          @"          
+          [plugin]          
+          internal_name = "SillyLizard"          
+          display_name = "SillyLizard"          
+          author = "Oak"          
+          description = "Silly lizards are here!"          
+          punchline = "Hello there"          
+          repo_url = "https://github.com/WondrousAJ/silly-lizard"          
+          tags = ["lizard"]          
+          icon_url = "https://WondrousAJ.github.io/silly-lizard/release/images/icon.png"          
+          assembly_version = "${{ env.tag }}"          
+          dalamud_api_level = 12          
+          download_link_install = "https://WondrousAJ.github.io/silly-lizard/release/SillyLizard.zip"          
+          changelog = "Auto-published version ${{ env.tag }}"          
+          "@ | Out-File -Encoding utf8 -FilePath .\release\manifest.toml
+
+      - name: Copy Built Files to Release Folder
+        run: |
+          Copy-Item .\build\SillyLizard.zip .\release\SillyLizard.zip -Force
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Generate pluginmaster.json with Python script
+        run: python generate_pluginmaster.py
+        working-directory: .
+
+      - name: Commit and Push to GitHub Pages branch
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add release/ pluginmaster.json
+          git commit -m "Update pluginmaster.json and release files for ${{ env.tag }}" || echo "No changes to commit"
+          git push origin main
