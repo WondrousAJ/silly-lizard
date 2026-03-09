@@ -1,0 +1,25 @@
+[
+    {
+        "Author": "Oak",
+        "Name": "Silly Lizard",
+        "Punchline": "For all your silly lizard needs!",
+        "Description": "This is a test plugin for learning about custom repositories.",
+        "InternalName": "SillyLizard",
+        "AssemblyVersion": "7.4.5.4",
+        "ApplicableVersion": "any",
+        "Tags": [
+            "silly",
+            "lizard",
+            "plugin"
+        ],
+        "DalamudApiLevel": 14,
+        "LoadPriority": 0,
+        "DownloadLinkInstall": "https://WondrousAJ.github.io/silly-lizard/release/SillyLizard.zip",
+        "IsHide": false,
+        "IsTestingExclusive": false,
+        "DownloadLinkTesting": "https://WondrousAJ.github.io/silly-lizard/release/SillyLizard.zip",
+        "DownloadLinkUpdate": "https://WondrousAJ.github.io/silly-lizard/release/SillyLizard.zip",
+        "DownloadCount": 0,
+        "LastUpdate": "1773034286"
+    }
+]
