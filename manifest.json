@@ -1,0 +1,19 @@
+{
+  "Author": "Toshi",
+  "Name": "ToshiBox",
+  "InternalName": "ToshiBox",
+  "Description": "My own playground for plugin dev",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "Toshibox"
+  ],
+  "DalamudApiLevel": 14,
+  "LoadRequiredState": 0,
+  "LoadSync": false,
+  "CanUnloadAsync": false,
+  "LoadPriority": 0,
+  "IsTestingExclusive": false,
+  "IconUrl": "https://raw.githubusercontent.com/Tykku/ToshiBox/refs/heads/main/release/images/Icon.png",
+  "Punchline": "Hello there",
+  "AcceptsFeedback": true
+}
