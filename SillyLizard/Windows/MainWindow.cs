@@ -51,7 +51,7 @@ public class MainWindow : Window, IDisposable
             // Check if this child is drawing
             if (child.Success)
             {
-                ImGui.Text("Have a goat:");
+                ImGui.Text("Have a lizard:");
                 var goatImage = Plugin.TextureProvider.GetFromFile(goatImagePath).GetWrapOrDefault();
                 if (goatImage != null)
                 {
