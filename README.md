@@ -10,7 +10,7 @@ To install this plugin in XIVLauncher / Dalamud:
 4. Under **"Custom Plugin Repositories"**, add:
 
 ```
-https://raw.githubusercontent.com/WondrousAJ/silly-lizard/master/pluginmaster.json
+https://wondrousaj.github.io/silly-lizard/pluginmaster.json
 ```
 
 5. Click **Save**, then search for **SillyLizard** in the Plugin Installer and install it.
