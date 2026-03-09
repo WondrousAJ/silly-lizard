@@ -5,7 +5,7 @@
         "Punchline": "For all your silly lizard needs!",
         "Description": "This is a test plugin for learning about custom repositories.",
         "InternalName": "SillyLizard",
-        "AssemblyVersion": "7.4.5.4",
+        "AssemblyVersion": "7.4.5.5",
         "ApplicableVersion": "any",
         "Tags": [
             "silly",
@@ -20,6 +20,6 @@
         "DownloadLinkTesting": "https://WondrousAJ.github.io/silly-lizard/release/SillyLizard.zip",
         "DownloadLinkUpdate": "https://WondrousAJ.github.io/silly-lizard/release/SillyLizard.zip",
         "DownloadCount": 0,
-        "LastUpdate": "1773034286"
+        "LastUpdate": "1773034895"
     }
 ]
