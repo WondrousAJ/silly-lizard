@@ -85,4 +85,4 @@ jobs:
           git config user.email "actions@github.com"
           git add release/ pluginmaster.json
           git commit -m "Update pluginmaster.json and release files for ${{ env.tag }}" || echo "No changes to commit"
-          git push origin main
+          git push origin master
