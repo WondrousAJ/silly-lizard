@@ -1,11 +1,11 @@
 {
-  "Author": "Toshi",
-  "Name": "ToshiBox",
-  "InternalName": "ToshiBox",
+  "Author": "Oak",
+  "Name": "SillyLizard",
+  "InternalName": "SillyLizard",
   "Description": "My own playground for plugin dev",
   "ApplicableVersion": "any",
   "Tags": [
-    "Toshibox"
+    "Lizards"
   ],
   "DalamudApiLevel": 14,
   "LoadRequiredState": 0,
@@ -14,6 +14,6 @@
   "LoadPriority": 0,
   "IsTestingExclusive": false,
   "IconUrl": "https://raw.githubusercontent.com/Tykku/ToshiBox/refs/heads/main/release/images/Icon.png",
-  "Punchline": "Hello there",
+  "Punchline": "Ah, General Kenobi",
   "AcceptsFeedback": true
 }
